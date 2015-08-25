@@ -1,10 +1,13 @@
-var padding = view.size.width/4; //canvas padding.
+var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
+    padding = base_measure/4;
 
-var count = 5,
-    unit = (view.size.width - 2 * padding) / count, 
-    lattice_center = new Point(view.center.x, padding + unit),
-    size = unit/2,
-    layers = Math.ceil(count / 3),
+var level = 18,
+    unit = (base_measure - 2 * padding) / level, 
+    group_center = new Point(view.center.x, view.center.y),
+    radius = unit/2,
+    center_shift = new Point(0, -radius/6), 
+    ratio = Math.sqrt(3) / 2;  //the height of a regular triangle to its side
+    layers = Math.ceil(level / 3),
     palette = ['rgb(255,255,229)',
                'rgb(247,252,185)',
                'rgb(217,240,163)',
@@ -15,57 +18,87 @@ var count = 5,
                'rgb(0,104,55)',
                'rgb(0,69,41)'];
 
-var lattice = [];
-// Create an array of objects that has all the (x, y) coordinates
+
+//--- Create an array of objects that has all the (x, y) coordinates
 // and their corresponding indices (i, j); color and rotation.
-for (var i = 1; i <= count; i++){
+var lattice = [];
+for (var i = 1; i <= level; i++){
     for (var j = 1; j <= i; j++) {
-        var x = lattice_center.x - (i-1)*unit/2 + (j-1)*unit,
-            y = lattice_center.y + (count - i) * unit *.8,
-            point = new Point({x: x, y: y}),
-            color = '#eee', // Placeholder color
+        var x = group_center.x - (i-1)*unit/2 + (j-1)*unit,
+            y = group_center.y + (level - i) * unit * ratio - padding,
+            point = new Point(x, y),
+            color = palette[0],
             rotation = 60; // Default rotation
-        //if (i != count || j != 1){
+
+        if (i != level || j != 1){
             lattice.push({                                                  
                 key: [i, j],
                 center: point, 
                 color: color, 
                 rotation: rotation
             });
-        //}
+        }
     }
 }
-//lattice.pop();
-//lattice.shift();
+lattice.pop();
+lattice.shift();
 
-var path = new Path.RegularPolygon(view.center, 3, size);
-roundPath(path, size/6);
+//-------------------------------
+var path = new Path.RegularPolygon(view.center, 3, radius);
+roundPath(path, radius/6);
 
+var layer_groups = [];
 for (var k = 0; k < layers; k++){
-    lattice.forEach(function(node){
-        if ( (node.key[0] == node.key[1]) 
-            || node.key[1] == 1 || node.key[0] == count) {
-            var copy = path.clone();
-            copy.fillColor = node.color;
-            copy.position = node.center;
-            copy.rotate(node.rotation, node.center);
-        } else if ((node.key[1] == k + 1 && node.key[0] > k*2 && node.key[0] <= count - k)
-            || (node.key[1] == node.key[0] - k && node.key[0] > k*2 && node.key[0] <= count - k) 
-            || (node.key[0] == count - k && node.key[1] > k && node.key[1] < node.key[0]-k)
+    var group = new Group();
+    layer_groups.push(group);
+}
+
+
+lattice.forEach(function(node){
+    for (var k = 0; k < layers; k++){
+        if ((node.key[1] == k + 1 && node.key[0] > k*2 && node.key[0] <= level - k)
+            || (node.key[1] == node.key[0] - k && node.key[0] > k*2 && node.key[0] <= level - k) 
+            || (node.key[0] == level - k && node.key[1] > k && node.key[1] < node.key[0]-k)
         ){
             var copy = path.clone();
             copy.fillColor = node.color;
-            copy.position = node.center;
-            copy.rotate(node.rotation+360/layers * k, node.center);
+            copy.position = node.center + center_shift;
+            copy.rotate(node.rotation, node.center);
+            
+            var anchor = new Path(new Point(node.center));  //these will the anchors for the triangle rotation center
+
+            copy.name = "triangle";
+            anchor.name = "anchor";
+            
+            var subgroup = new Group([copy, anchor]);
+            layer_groups[k].addChild(subgroup);
         }
-    });
+    }
+});
+
+var color_count = 0;
+function onFrame(event){
+
+    for (var k = 0; k < layers; k++){
+        for (var i=0; i < layer_groups[k].children.length; i++){
+            
+            var triangle = layer_groups[k].children[i].children["triangle"],
+                anchor = layer_groups[k].children[i].children["anchor"];
+            
+            triangle.rotate(.5 * k, anchor.position);
+            triangle.fillColor = palette[(color_count+k) % palette.length];
+        }
+    }
+    //color_count= color_count + 1;
 }
 
 
-var children = project.activeLayer.children
-console.log(lattice.length, children.length);
+
+//----------- Below this line are all debuggers. Remove when it's done ----------//
 
 
+
+//-------------- Helper Functions ------------------//
 function roundPath(path,radius) {
     var segments = path.segments.slice(0);
     path.removeSegments();
