@@ -1,11 +1,12 @@
-var level = 10;
-
-
 var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
-    padding = base_measure/4,
+    padding = base_measure/4;
+
+var level = 10,
     unit = (base_measure - 2 * padding) / level, 
     group_center = new Point(view.center.x, view.center.y),
     radius = unit/2,
+    //center_shift = new Point(0, -radius/6), 
+    //ratio = Math.sqrt(3) / 2;  //the height of a regular triangle to its side
     layers = Math.ceil(level / 2),
     palette = ['rgb(255,255,229)',
                'rgb(247,252,185)',
