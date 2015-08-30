@@ -1,23 +1,17 @@
-var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
-    padding = base_measure/4;
+// ---- User Input ---- //
+var level = 42,   //TODO: allow for 10 ~ 60 range
+    palette = swatches.makeup_artist;
 
-var level = 20,
+// ---- Calculated Variables ---- //
+var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
+    padding = base_measure/6,
     unit = (base_measure - 2 * padding) / level, 
     group_center = new Point(view.center.x, view.center.y),
     radius = unit/2,
     center_shift = new Point(0, -radius/6), 
     ratio = Math.sqrt(3) / 2;  //the height of a regular triangle to its side
-    layers = Math.ceil(level / 3),
-    palette = ['rgb(255,255,229)',
-               'rgb(247,252,185)',
-               // 'rgb(217,240,163)',
-               // 'rgb(173,221,142)',
-               // 'rgb(120,198,121)',
-               // 'rgb(65,171,93)',
-               // 'rgb(35,132,67)',
-               'rgb(0,104,55)',
-               'rgb(0,69,41)'];
-
+    layers = Math.ceil(level / 3);
+    
 
 //--- Create an array of objects that has all the (x, y) coordinates
 // and their corresponding indices (i, j); color and rotation.
@@ -51,10 +45,7 @@ for (var k = 0; k < layers; k++){
     layer_groups.push(group);
 }
 
-
 lattice.forEach(function(node){
-
-
     for (var k = 0; k < layers; k++){
         if ((node.key[1] == k + 1 && node.key[0] > k*2 && node.key[0] <= level - k)
             || (node.key[1] == node.key[0] - k && node.key[0] > k*2 && node.key[0] <= level - k) 
@@ -75,7 +66,9 @@ lattice.forEach(function(node){
     }
 });
 
-var frame_count = 0, interval = 60;
+var frame_count = 0, 
+    interval = Math.ceil(60/level);
+
 function onFrame(event){
 
     for (var k = 0; k < layers; k++){
@@ -93,6 +86,7 @@ function onFrame(event){
         }
     }
     frame_count++;
+
 }
 
 
