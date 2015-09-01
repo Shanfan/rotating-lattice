@@ -1,3 +1,4 @@
+// --- Define the paletes --- //
 var swatches = {
     green_gradient: [
         'rgb(255,255,229)',
@@ -31,7 +32,7 @@ var swatches = {
         'rgb(178, 115, 172)',
         'rgb(206, 182, 198)',
         'rgb(226, 228, 215)',
-        //'rgb(245, 184, 105)',
+        //'rgb(245, 184, 105)', Not liking the yellowish color
         'rgb(222, 215, 207)',
         'rgb(196, 164, 188)',
         'rgb(173, 112, 171)',
@@ -78,3 +79,58 @@ var swatches = {
         'rgb(98, 41, 34)'
     ]
 };
+
+// ----------- Round Path Corners ------------- //
+function roundPath(path,radius) {
+    var segments = path.segments.slice(0);
+    path.removeSegments();
+
+    for(var i = 0, l = segments.length; i < l; i++) {
+        var curPoint = segments[i].point;
+        var nextPoint = segments[i + 1 == l ? 0 : i + 1].point;
+        var prevPoint = segments[i - 1 < 0 ? segments.length - 1 : i - 1].point;
+        var nextDelta = curPoint.subtract(nextPoint);
+        var prevDelta = curPoint.subtract(prevPoint);
+
+        nextDelta.length = radius;
+        prevDelta.length = radius;
+
+        path.add(
+            new paper.Segment(
+                curPoint.subtract(prevDelta),
+                null,
+                prevDelta.divide(2)
+            )
+        );
+
+        path.add(
+            new paper.Segment(
+                curPoint.subtract(nextDelta),
+                nextDelta.divide(2),
+                null
+            )
+        );
+    }
+    path.closed = true;
+    return path;
+}
+
+// --- Initiate Drawing --- //
+paper.install(window);
+window.onload = function(){
+	paper.setup('lattice');
+	createTriangle(12, swatches.green_gradient);
+	document.querySelector('input[type="button"]').addEventListener("click", configure, false);
+};
+
+function configure(){
+	var shape = document.querySelector('input[name="shape"]:checked').value,
+		level = 12,
+		palette = swatches.green_gradient;
+	
+	if (shape == "triangle") {
+		createTriangle(level, palette);
+	}else {
+		createSquare(level, palette);
+	}
+}

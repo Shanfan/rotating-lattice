@@ -1,6 +1,6 @@
 // ---- User Input ---- //
-var level = 42,   //TODO: allow for 10 ~ 60 range
-    palette = swatches.makeup_artist;
+var level = 4,   //TODO: allow for 3 ~ 60 range
+    palette = swatches.green_gradient;
 
 // ---- Calculated Variables ---- //
 var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;

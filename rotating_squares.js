@@ -1,6 +1,6 @@
 // ---- User Input ---- //
-var level = 12,   //TODO: allow for 10 ~ 60 range
-    palette = swatches.makeup_artist;
+var level = 13,   //TODO: allow for 3 ~ 60 range
+    palette = ['#eee'];
 
 // ---- Calculated Variables ---- //
 var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;

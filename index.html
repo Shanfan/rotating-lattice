@@ -3,14 +3,12 @@
 <head>
 	<title>Rotating Triangles</title>
 	<script type="text/javascript" src="paper-full.min.js"></script>
-	<script type="text/javascript" src="helpers.js"></script>
-	<script type="text/javascript" src="palettes.js"></script>
-	<script type="text/paperscript" src="rotating_triangles.js" canvas="triangles"></script>
 	<style>
 		body {
 			margin: 0;
 			padding: 0;
 			background-color: #222;
+			color: white;
 		}
 		canvas {
 			width: 100%;
@@ -20,10 +18,71 @@
 			margin: 0;
 			float: left;
 		}
+		form {
+			color: white;
+			position: absolute;
+			top: 20px;
+			left: 20px;
+		}
+		footer {
+			position: absolute;
+			padding: 10px 20px;
+			bottom: 0;
+			width: 100%;
+			background-color: rgba(255, 255, 255, .6);
+		}
+
+		input[type=range]{
+		    -webkit-appearance: none;
+		}
+
+		input[type=range]::-webkit-slider-runnable-track {
+		    width: 300px;
+		    height: 5px;
+		    background: #ddd;
+		    border: none;
+		    border-radius: 3px;
+		}
+
+		input[type=range]::-webkit-slider-thumb {
+		    -webkit-appearance: none;
+		    border: none;
+		    height: 16px;
+		    width: 16px;
+		    border-radius: 50%;
+		    background: goldenrod;
+		    margin-top: -4px;
+		}
+
+		input[type=range]:focus {
+		    outline: none;
+		}
+
+		input[type=range]:focus::-webkit-slider-runnable-track {
+		    background: #ccc;
+		}
 	</style>
 </head>
 <body>
-	<canvas id="triangles" resize="true"></canvas>
-	<!-- <canvas id="squares" resize="true"></canvas> -->
+	<canvas id="lattice" resize="true"></canvas>
+
+	<form>
+		<input type="radio" name="shape" value="triangle" checked/>Triangle<br>
+		<input type="radio" name="shape" value="rectangle" />Rectangle<br>
+		<label for="level">level</label>
+		<input type="range" name="level" list="ticker" min="10" max="60" step="1" value="10" /><br>
+		
+		<input type="button" name="go" value="Go!">
+	</form>
+<!-- 	<footer>
+		<a href="#">Behind the Scene</a>
+		<a href="#">Source Code</a>
+		<span>Dislaimer: Did not optimize for browser support.</span>
+	</footer>
+ -->
+	<!-- <script type="text/paperscript" src="rotating_lattice.js" canvas="lattice"></script> -->
+
+	<script type="text/javascript" src="config.js"></script>
+	<script type="text/javascript" src="rotating_lattice.js"></script>
 </body>
 </html>
