@@ -1,5 +1,8 @@
 // --- Define the paletes --- //
 var swatches = {
+    monotone: ['#dcdfcf'],
+    duo: ['#e8466c', '#fb8db4'],
+    trio: ['#ecf8f4', '#dcdfcf', '#b3c0d2'],
     green_gradient: [
         'rgb(255,255,229)',
         'rgb(247,252,185)',
@@ -119,13 +122,20 @@ function roundPath(path,radius) {
 paper.install(window);
 window.onload = function(){
 	paper.setup('lattice');
-	createTriangle(10, swatches.green_gradient);
+	createTriangle(10, ["#ddd"]);
+
     document.config.geom[0].addEventListener('change', configure, false);
     document.config.geom[1].addEventListener('change', configure, false);
     document.config.level.addEventListener('change', configure, false);
+    
     document.config.level.addEventListener('input', function(){
         document.querySelector('output').innerHTML = document.querySelector('input[type="range"]').value;
     }, false);
+
+    var selected_palette = document.config.palette;
+    for (var i = 0; i < selected_palette.length; i++) {
+        selected_palette[i].addEventListener('change', configure, false);
+    }
 };
 
 
@@ -133,7 +143,7 @@ window.onload = function(){
 function configure(){
 	var shape = getShape(),
 		level = getLevel(),
-		palette = swatches.makeup_artist;
+		palette = getPalette();
 	
 	if (shape == "triangle") {
 		createTriangle(level, palette);
@@ -157,4 +167,16 @@ function getShape(){
 
 function getLevel(){
     return document.getElementById('level').value;
+}
+
+function getPalette(){
+    var val, selected_palette = document.getElementsByName('palette');
+
+    for (var i=0; i<selected_palette.length; i++) {
+        if (selected_palette[i].checked) {
+            val = selected_palette[i].value;
+            break;
+        }
+    }
+    return swatches[val];
 }

@@ -67,10 +67,29 @@
 	<canvas id="lattice" resize="true"></canvas>
 
 	<form name="config">
-		<input type="radio" name="geom" value="triangle" checked/>Triangle<br>
-		<input type="radio" name="geom" value="rectangle" />Rectangle<br>
-		<label for="level">level</label><output for="level"></output>
+		<input type="radio" name="geom" value="triangle" checked /> Triangle<br>
+		<input type="radio" name="geom" value="rectangle" /> Rectangle<br>
+		<br>
+		<label for="level">level: </label><output for="level">10</output><br>
 		<input type="range" name="level" id="level" list="ticker" min="10" max="60" step="1" value="10" /><br>
+		<br>
+		Select Palette<br>
+		<input type="radio" name="palette" id="monotone" value="monotone" checked />
+		<div>Monotone</div><br>
+		<input type="radio" name="palette" id="duo" value="duo" />
+		<div>Duo</div><br>
+		<input type="radio" name="palette" id="trio" value="trio" />
+		<div>Trio</div><br>
+		<input type="radio" name="palette" id="green_gradient" value="green_gradient" />
+		<div>Green Gradient</div><br>
+		<input type="radio" name="palette" id="spring_lilac" value="spring_lilac" />
+		<div>Spring Lilac</div><br>
+		<input type="radio" name="palette" id="birth_universe" value="birth_universe" />
+		<div>Birth of the Universe</div><br>
+		<input type="radio" name="palette" id="makeup_artist" value="makeup_artist" />
+		<div>Makeup Artist</div><br>
+		<input type="radio" name="palette" id="earth" value="earth" />
+		<div>Earth</div><br>
 	</form>
 <!-- 	<footer>
 		<a href="#">Behind the Scene</a>

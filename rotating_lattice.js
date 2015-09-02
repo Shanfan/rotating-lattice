@@ -1,6 +1,7 @@
+
+
 function createTriangle(level, palette) {
     project.clear();
-
     // ---- Setup Variables ---- //
     var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
         padding = base_measure/6,
@@ -16,7 +17,7 @@ function createTriangle(level, palette) {
     roundPath(path, radius/6);
 
     var center_shift = new Point(0, -radius/6), 
-        ratio = Math.sqrt(3) / 2;  
+        ratio = Math.sqrt(3) / 2;  //the height to side ratio of a reg trig
         layers = Math.ceil(level / 3),
         layer_groups = [];
 
@@ -31,7 +32,7 @@ function createTriangle(level, palette) {
     for (var i = 1; i <= level; i++){
         for (var j = 1; j <= i; j++) {
             var x = group_center.x - (i-1)*unit/2 + (j-1)*unit,
-                y = group_center.y + (level - i) * unit * ratio - padding,
+                y = group_center.y + level * unit * ratio/2 - i *unit*ratio,
                 point = new Point(x, y),
                 rotation = 60; // Default rotation
 
@@ -90,7 +91,6 @@ function createTriangle(level, palette) {
 
 function createSquare(level, palette) {
     project.clear();
-
     // ---- Setup Variables ---- //
     var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
         padding = base_measure/6,
@@ -113,11 +113,6 @@ function createSquare(level, palette) {
         var group = new Group();
         layer_groups.push(group);
     }
-
-
-    //TODO: Adjust the lattice center to the view center
-    //the current calculation does position it to the center
-
     
     //--- Create an array of objects that has all the (x, y) coordinates
     // and their corresponding indices (i, j); color and rotation.
