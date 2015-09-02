@@ -8,7 +8,7 @@ function createTriangle(level, palette) {
         group_center = new Point(view.center.x, view.center.y),
         radius = unit/2,
         frame_count = 0, 
-        interval = Math.ceil(60/level),
+        interval = 2,
         lattice = [];
 
     //--- Create base shape ---//
@@ -98,7 +98,7 @@ function createSquare(level, palette) {
         group_center = new Point(view.center.x, view.center.y),
         radius = unit/2,
         frame_count = 0, 
-        interval = Math.ceil(60/level),
+        interval = 2,
         lattice = [];
 
     //--- Create base shape ---//
@@ -123,8 +123,8 @@ function createSquare(level, palette) {
     // and their corresponding indices (i, j); color and rotation.
     for (var i = 1; i <= level; i++){
         for (var j = 1; j <= level; j++) {
-            var x = (level - i) * unit + group_center.x/2,
-                y = (level - j) * unit + group_center.y/2,
+            var x = group_center.x - level * unit / 2 + (i-1) * unit + unit/2,
+                y = group_center.y - level * unit / 2 + (j-1) * unit + unit/2,
                 point = new Point({x: x, y: y}),
                 rotation = 0;
             

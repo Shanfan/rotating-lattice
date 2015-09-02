@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rotating Triangles</title>
+	<title>Rotating Lattice</title>
 	<script type="text/javascript" src="paper-full.min.js"></script>
 	<style>
 		body {
@@ -66,13 +66,11 @@
 <body>
 	<canvas id="lattice" resize="true"></canvas>
 
-	<form>
-		<input type="radio" name="shape" value="triangle" checked/>Triangle<br>
-		<input type="radio" name="shape" value="rectangle" />Rectangle<br>
-		<label for="level">level</label>
-		<input type="range" name="level" list="ticker" min="10" max="60" step="1" value="10" /><br>
-		
-		<input type="button" name="go" value="Go!">
+	<form name="config">
+		<input type="radio" name="geom" value="triangle" checked/>Triangle<br>
+		<input type="radio" name="geom" value="rectangle" />Rectangle<br>
+		<label for="level">level</label><output for="level"></output>
+		<input type="range" name="level" id="level" list="ticker" min="10" max="60" step="1" value="10" /><br>
 	</form>
 <!-- 	<footer>
 		<a href="#">Behind the Scene</a>

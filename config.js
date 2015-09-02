@@ -119,18 +119,42 @@ function roundPath(path,radius) {
 paper.install(window);
 window.onload = function(){
 	paper.setup('lattice');
-	createTriangle(12, swatches.green_gradient);
-	document.querySelector('input[type="button"]').addEventListener("click", configure, false);
+	createTriangle(10, swatches.green_gradient);
+    document.config.geom[0].addEventListener('change', configure, false);
+    document.config.geom[1].addEventListener('change', configure, false);
+    document.config.level.addEventListener('change', configure, false);
+    document.config.level.addEventListener('input', function(){
+        document.querySelector('output').innerHTML = document.querySelector('input[type="range"]').value;
+    }, false);
 };
 
+
+
 function configure(){
-	var shape = document.querySelector('input[name="shape"]:checked').value,
-		level = 12,
-		palette = swatches.green_gradient;
+	var shape = getShape(),
+		level = getLevel(),
+		palette = swatches.makeup_artist;
 	
 	if (shape == "triangle") {
 		createTriangle(level, palette);
 	}else {
 		createSquare(level, palette);
 	}
+}
+
+
+function getShape(){
+    var val, selected_shape = document.getElementsByName('geom');
+
+    for (var i=0; i<selected_shape.length; i++){
+        if (selected_shape[i].checked) {
+            val = selected_shape[i].value;
+            break;
+        }
+    }
+    return val;
+}
+
+function getLevel(){
+    return document.getElementById('level').value;
 }
