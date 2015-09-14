@@ -122,10 +122,11 @@ function roundPath(path,radius) {
 paper.install(window);
 window.onload = function(){
 	paper.setup('lattice');
-	createTriangle(10, ["#ddd"]);
+	createTriangle(12, ["#ddd"]);
 
     document.config.geom[0].addEventListener('change', configure, false);
     document.config.geom[1].addEventListener('change', configure, false);
+    
     document.config.level.addEventListener('change', configure, false);
     
     document.config.level.addEventListener('input', function(){
@@ -136,6 +137,8 @@ window.onload = function(){
     for (var i = 0; i < selected_palette.length; i++) {
         selected_palette[i].addEventListener('change', configure, false);
     }
+
+    var swatch_list = document.querySelector('.swatches');
 };
 
 
@@ -180,3 +183,5 @@ function getPalette(){
     }
     return swatches[val];
 }
+
+

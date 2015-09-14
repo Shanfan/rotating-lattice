@@ -2,102 +2,55 @@
 <html>
 <head>
 	<title>Rotating Lattice</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="paper-full.min.js"></script>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			background-color: #222;
-			color: white;
-		}
-		canvas {
-			width: 100%;
-			height: 100vh;
-			background-color: transparent;
-			padding: 0;
-			margin: 0;
-			float: left;
-		}
-		form {
-			color: white;
-			position: absolute;
-			top: 20px;
-			left: 20px;
-		}
-		footer {
-			position: absolute;
-			padding: 10px 20px;
-			bottom: 0;
-			width: 100%;
-			background-color: rgba(255, 255, 255, .6);
-		}
-
-		input[type=range]{
-		    -webkit-appearance: none;
-		}
-
-		input[type=range]::-webkit-slider-runnable-track {
-		    width: 300px;
-		    height: 5px;
-		    background: #ddd;
-		    border: none;
-		    border-radius: 3px;
-		}
-
-		input[type=range]::-webkit-slider-thumb {
-		    -webkit-appearance: none;
-		    border: none;
-		    height: 16px;
-		    width: 16px;
-		    border-radius: 50%;
-		    background: goldenrod;
-		    margin-top: -4px;
-		}
-
-		input[type=range]:focus {
-		    outline: none;
-		}
-
-		input[type=range]:focus::-webkit-slider-runnable-track {
-		    background: #ccc;
-		}
-	</style>
 </head>
 <body>
 	<canvas id="lattice" resize="true"></canvas>
+	<div class = "control">
+		<header>
+			<h1>Rotating Lattice</h1>
+		</header>
 
-	<form name="config">
-		<input type="radio" name="geom" value="triangle" checked /> Triangle<br>
-		<input type="radio" name="geom" value="rectangle" /> Rectangle<br>
-		<br>
-		<label for="level">level: </label><output for="level">10</output><br>
-		<input type="range" name="level" id="level" list="ticker" min="10" max="60" step="1" value="10" /><br>
-		<br>
-		Select Palette<br>
-		<input type="radio" name="palette" id="monotone" value="monotone" checked />
-		<div>Monotone</div><br>
-		<input type="radio" name="palette" id="duo" value="duo" />
-		<div>Duo</div><br>
-		<input type="radio" name="palette" id="trio" value="trio" />
-		<div>Trio</div><br>
-		<input type="radio" name="palette" id="green_gradient" value="green_gradient" />
-		<div>Green Gradient</div><br>
-		<input type="radio" name="palette" id="spring_lilac" value="spring_lilac" />
-		<div>Spring Lilac</div><br>
-		<input type="radio" name="palette" id="birth_universe" value="birth_universe" />
-		<div>Birth of the Universe</div><br>
-		<input type="radio" name="palette" id="makeup_artist" value="makeup_artist" />
-		<div>Makeup Artist</div><br>
-		<input type="radio" name="palette" id="earth" value="earth" />
-		<div>Earth</div><br>
-	</form>
-<!-- 	<footer>
-		<a href="#">Behind the Scene</a>
-		<a href="#">Source Code</a>
-		<span>Dislaimer: Did not optimize for browser support.</span>
-	</footer>
- -->
-	<!-- <script type="text/paperscript" src="rotating_lattice.js" canvas="lattice"></script> -->
+		<form name="config" class="config">
+			<h2>Select Shape</h2>
+			<input type="radio" name="geom" value="triangle" checked /> Triangle<br>
+			<input type="radio" name="geom" value="rectangle" /> Rectangle<br>
+
+			<h2>level</h2>
+			<output for="level">12</output><br>
+			<input type="range" name="level" id="level" min="12" max="60" step="1" value="12" />
+			<br>
+			
+			<h2>Select Palette</h2>
+			<input type="radio" name="palette" id="monotone" value="monotone" checked /> Monotone
+			<div class = "swatch-info">
+				<!-- Not sure if it's advised to use label here -->
+				<ul class="swatches monotone">
+
+				</ul>
+			</div><br>
+			<input type="radio" name="palette" id="duo" value="duo" />
+			<div>Duo</div><br>
+			<input type="radio" name="palette" id="trio" value="trio" />
+			<div>Trio</div><br>
+			<input type="radio" name="palette" id="green_gradient" value="green_gradient" />
+			<div>Green Gradient</div><br>
+			<input type="radio" name="palette" id="spring_lilac" value="spring_lilac" />
+			<div>Spring Lilac</div><br>
+			<input type="radio" name="palette" id="birth_universe" value="birth_universe" />
+			<div>Birth of the Universe</div><br>
+			<input type="radio" name="palette" id="makeup_artist" value="makeup_artist" />
+			<div>Makeup Artist</div><br>
+			<input type="radio" name="palette" id="earth" value="earth" />
+			<div>Earth</div><br>
+		</form>
+		<footer>
+			<a href="#">Behind the Scene</a><br>
+			<a href="#">Source Code</a><br>
+			<span>Dislaimer: Did not optimize for browser support.</span>
+		</footer>
+	</div>
 
 	<script type="text/javascript" src="config.js"></script>
 	<script type="text/javascript" src="rotating_lattice.js"></script>

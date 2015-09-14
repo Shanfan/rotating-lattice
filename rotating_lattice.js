@@ -1,15 +1,14 @@
-
-
 function createTriangle(level, palette) {
     project.clear();
     // ---- Setup Variables ---- //
+    // TODO: to move these shared variables out of the scope, it has to make sure the paper.setup() is called.
     var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
         padding = base_measure/6,
         unit = (base_measure - 2 * padding) / level, 
         group_center = new Point(view.center.x, view.center.y),
         radius = unit/2,
         frame_count = 0, 
-        interval = 2,
+        interval = 20,
         lattice = [];
 
     //--- Create base shape ---//
@@ -70,19 +69,21 @@ function createTriangle(level, palette) {
     });
 
     view.onFrame = function(event){
-
         for (var k = 0; k < layers; k++){
-
             for (var i=0; i < layer_groups[k].children.length; i++){
-                
                 var triangle = layer_groups[k].children[i].children["triangle"],
                     anchor = layer_groups[k].children[i].children["anchor"];
                 
                 triangle.rotate(.5 * k, anchor.position);
+
+                //TODO: Add a mouse over action:
+                //Somehow allows the user to choose between static color
+                //or the beaming color
+                triangle.fillColor = palette[k % palette.length];
                 
-                if (frame_count%interval===0){
-                    triangle.fillColor = palette[(frame_count/interval + k) % palette.length];
-                } 
+                // if (frame_count%interval===0){
+                //     triangle.fillColor = palette[(frame_count/interval + k) % palette.length];
+                // } 
             }
         }
         frame_count++;
