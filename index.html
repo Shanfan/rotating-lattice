@@ -2,28 +2,37 @@
 <html>
 <head>
 	<title>Rotating Lattice</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+ -->	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="paper-full.min.js"></script>
 </head>
 <body>
 	<canvas id="lattice" resize="true"></canvas>
 	<div class = "control">
-		<header>
-			<h1>Rotating Lattice</h1>
-		</header>
 
 		<form name="config" class="config">
-			<h2>Select Shape</h2>
-			<input type="radio" name="geom" value="triangle" checked /> Triangle<br>
-			<input type="radio" name="geom" value="rectangle" /> Rectangle<br>
+			<section>
+				<h2><i class="fa fa-cogs fa-fw"></i>&nbsp;Lattice</h2	>
+				<ul class="fa-ul">
+					<li><input type="radio" name="geom" value="triangle" checked /><i class="fa-li fa fa-play fa-rotate-90"></i> Triangle</li>
+					<li><input type="radio" name="geom" value="rectangle" /><i class="fa-li fa fa-stop"></i> Rectangle</li>
+				</ul>
+			</section>
 
-			<h2>level</h2>
-			<output for="level">12</output><br>
-			<input type="range" name="level" id="level" min="12" max="60" step="1" value="12" />
-			<br>
+			<section>
+				<h2><i class="fa fa-sliders fa-fw"></i>&nbsp;Controls</h2>
+				<ul class="fa-ul">
+					<li>Level: <output for="level">12</output><br>
+						<input type="range" name="level" id="level" min="12" max="60" step="1" value="12" />
+					</li>
+					<li>Speed: <output for="speed">1</output><br>
+						<input type="range" name="speed" id="speed" min="-5" max="5" step="1" value="1" />
+					</li>
+				</ul>
+			</section>
 			
-			<h2>Select Palette</h2>
-			<input type="radio" name="palette" id="monotone" value="monotone" checked /> Monotone
+			<h2><i class="fa fa-magic fa-fw"></i>&nbsp;Palette</h2>
+			<input type="radio" name="palette" id="monotone" value="monotone" checked /> Mono
 			<div class = "swatch-info">
 				<!-- Not sure if it's advised to use label here -->
 				<ul class="swatches monotone">
@@ -44,12 +53,10 @@
 			<div>Makeup Artist</div><br>
 			<input type="radio" name="palette" id="earth" value="earth" />
 			<div>Earth</div><br>
+			<h2><a href="#"><i class="fa fa-film fa-fw"></i>&nbsp;Behind the Scene</a></h2>
+			<h2><a href="#"><i class="fa fa-github-alt fa-fw"></i>&nbsp;Source Code</a></h2>
 		</form>
-		<footer>
-			<a href="#">Behind the Scene</a><br>
-			<a href="#">Source Code</a><br>
-			<span>Dislaimer: Did not optimize for browser support.</span>
-		</footer>
+
 	</div>
 
 	<script type="text/javascript" src="config.js"></script>

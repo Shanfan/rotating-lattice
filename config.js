@@ -1,3 +1,69 @@
+// --- Initiate Drawing --- //
+paper.install(window);
+window.onload = function(){
+	paper.setup('lattice');
+	createTriangle(12, ["#ddd"]);
+
+    document.config.geom[0].addEventListener('change', configure, false);
+    document.config.geom[1].addEventListener('change', configure, false);
+    
+    document.config.level.addEventListener('change', configure, false);
+    
+    document.config.level.addEventListener('input', function(){
+        document.querySelector('output').innerHTML = document.querySelector('input[type="range"]').value;
+    }, false);
+
+    var selected_palette = document.config.palette;
+    for (var i = 0; i < selected_palette.length; i++) {
+        selected_palette[i].addEventListener('change', configure, false);
+    }
+
+    var swatch_list = document.querySelector('.swatches');
+};
+
+
+
+function configure(){
+	var shape = getShape(),
+		level = getLevel(),
+		palette = getPalette();
+	
+	if (shape == "triangle") {
+		createTriangle(level, palette);
+	}else {
+		createSquare(level, palette);
+	}
+}
+
+
+function getShape(){
+    var val, selected_shape = document.getElementsByName('geom');
+
+    for (var i=0; i<selected_shape.length; i++){
+        if (selected_shape[i].checked) {
+            val = selected_shape[i].value;
+            break;
+        }
+    }
+    return val;
+}
+
+function getLevel(){
+    return document.getElementById('level').value;
+}
+
+function getPalette(){
+    var val, selected_palette = document.getElementsByName('palette');
+
+    for (var i=0; i<selected_palette.length; i++) {
+        if (selected_palette[i].checked) {
+            val = selected_palette[i].value;
+            break;
+        }
+    }
+    return swatches[val];
+}
+
 // --- Define the paletes --- //
 var swatches = {
     monotone: ['#dcdfcf'],
@@ -117,71 +183,3 @@ function roundPath(path,radius) {
     path.closed = true;
     return path;
 }
-
-// --- Initiate Drawing --- //
-paper.install(window);
-window.onload = function(){
-	paper.setup('lattice');
-	createTriangle(12, ["#ddd"]);
-
-    document.config.geom[0].addEventListener('change', configure, false);
-    document.config.geom[1].addEventListener('change', configure, false);
-    
-    document.config.level.addEventListener('change', configure, false);
-    
-    document.config.level.addEventListener('input', function(){
-        document.querySelector('output').innerHTML = document.querySelector('input[type="range"]').value;
-    }, false);
-
-    var selected_palette = document.config.palette;
-    for (var i = 0; i < selected_palette.length; i++) {
-        selected_palette[i].addEventListener('change', configure, false);
-    }
-
-    var swatch_list = document.querySelector('.swatches');
-};
-
-
-
-function configure(){
-	var shape = getShape(),
-		level = getLevel(),
-		palette = getPalette();
-	
-	if (shape == "triangle") {
-		createTriangle(level, palette);
-	}else {
-		createSquare(level, palette);
-	}
-}
-
-
-function getShape(){
-    var val, selected_shape = document.getElementsByName('geom');
-
-    for (var i=0; i<selected_shape.length; i++){
-        if (selected_shape[i].checked) {
-            val = selected_shape[i].value;
-            break;
-        }
-    }
-    return val;
-}
-
-function getLevel(){
-    return document.getElementById('level').value;
-}
-
-function getPalette(){
-    var val, selected_palette = document.getElementsByName('palette');
-
-    for (var i=0; i<selected_palette.length; i++) {
-        if (selected_palette[i].checked) {
-            val = selected_palette[i].value;
-            break;
-        }
-    }
-    return swatches[val];
-}
-
-
