@@ -2,63 +2,112 @@
 <html>
 <head>
 	<title>Rotating Lattice</title>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
- -->	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="paper-full.min.js"></script>
 </head>
 <body>
-	<canvas id="lattice" resize="true"></canvas>
 	<div class = "control">
 
 		<form name="config" class="config">
 			<section>
 				<h2><i class="fa fa-cogs fa-fw"></i>&nbsp;Lattice</h2	>
-				<ul class="fa-ul">
-					<li><input type="radio" name="geom" value="triangle" checked /><i class="fa-li fa fa-play fa-rotate-90"></i> Triangle</li>
-					<li><input type="radio" name="geom" value="rectangle" /><i class="fa-li fa fa-stop"></i> Rectangle</li>
+				<ul class="control-list">
+					<li>
+						<input type="radio" name="geom" id="triangle" value="triangle" checked />
+						<label for="triangle"><i class="fa fa-fw fa-play fa-rotate-90"></i> Triangle</label>
+					</li>
+					<li>
+						<input type="radio" id="rectangle" name="geom" value="rectangle" />
+						<label for="rectangle"><i class="fa fa-fw fa-stop"></i> Rectangle</label>
+					</li>
 				</ul>
 			</section>
 
 			<section>
-				<h2><i class="fa fa-sliders fa-fw"></i>&nbsp;Controls</h2>
-				<ul class="fa-ul">
-					<li>Level: <output for="level">12</output><br>
+				<h2><i class="fa fa-sliders fa-fw"></i>&nbsp;Control</h2>
+				<ul class="control-list">
+					<li>Level: <output id="for_level" for="level">12</output><br>
 						<input type="range" name="level" id="level" min="12" max="60" step="1" value="12" />
 					</li>
-					<li>Speed: <output for="speed">1</output><br>
+					<li>Speed: <output id="for_speed" for="speed">1</output><br>
 						<input type="range" name="speed" id="speed" min="-5" max="5" step="1" value="1" />
 					</li>
 				</ul>
 			</section>
 			
-			<h2><i class="fa fa-magic fa-fw"></i>&nbsp;Palette</h2>
-			<input type="radio" name="palette" id="monotone" value="monotone" checked /> Mono
-			<div class = "swatch-info">
-				<!-- Not sure if it's advised to use label here -->
-				<ul class="swatches monotone">
+			<section>
+				<h2><i class="fa fa-magic fa-fw"></i>&nbsp;Palette</h2>
+				<ul class="control-list">
+					<li>
+						<input type="radio" name="palette" id="monotone" value="monotone" checked /> 
+						<label for="monotone">Mono
+							<ul class="swatches monotone">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="duo" value="duo" />
+						<label for="duo">Duo
+							<ul class="swatches duo">
+							</ul>
+						</label>
+					</li>
 
+					<li>
+						<input type="radio" name="palette" id="trio" value="trio" />
+						<label for="trio">Trio
+							<ul class="swatches trio">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="green_gradient" value="green_gradient" />
+						<label for="green_gradient">Green Gradient
+							<ul class="swatches green_gradient">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="spring_lilac" value="spring_lilac" />
+						<label for="spring_lilac">Spring Lilac
+							<ul class="swatches spring_lilac">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="birth_universe" value="birth_universe" />
+						<label for="birth_universe">Birth of the Universe
+							<ul class="swatches birth_universe">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="makeup_artist" value="makeup_artist" />
+						<label for="makeup_artist">Makeup Artist
+							<ul class="swatches makeup_artist">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="earth" value="earth" />
+						<label for="earth">Earth
+							<ul class="swatches earth">
+							</ul>
+						</label>
+					</li>
 				</ul>
-			</div><br>
-			<input type="radio" name="palette" id="duo" value="duo" />
-			<div>Duo</div><br>
-			<input type="radio" name="palette" id="trio" value="trio" />
-			<div>Trio</div><br>
-			<input type="radio" name="palette" id="green_gradient" value="green_gradient" />
-			<div>Green Gradient</div><br>
-			<input type="radio" name="palette" id="spring_lilac" value="spring_lilac" />
-			<div>Spring Lilac</div><br>
-			<input type="radio" name="palette" id="birth_universe" value="birth_universe" />
-			<div>Birth of the Universe</div><br>
-			<input type="radio" name="palette" id="makeup_artist" value="makeup_artist" />
-			<div>Makeup Artist</div><br>
-			<input type="radio" name="palette" id="earth" value="earth" />
-			<div>Earth</div><br>
-			<h2><a href="#"><i class="fa fa-film fa-fw"></i>&nbsp;Behind the Scene</a></h2>
-			<h2><a href="#"><i class="fa fa-github-alt fa-fw"></i>&nbsp;Source Code</a></h2>
+			</section>
+			<section>
+				<h2><a href="#"><i class="fa fa-film fa-fw"></i>&nbsp;Behind the Scene</a></h2>
+				<h2><a href="https://github.com/Shanfan/rotating-lattice" target="_blank"><i class="fa fa-github-alt fa-fw"></i>&nbsp;Source Code</a></h2>
+			</section>
+			<section>
+				<p><i class="fa fa-chrome"></i> Everything works in Chrome. No guarantee for other browsers. <i class="fa fa-bug"></i></p>
+			</section>
 		</form>
 
 	</div>
-
+	<canvas id="lattice" resize="true"></canvas>
 	<script type="text/javascript" src="config.js"></script>
 	<script type="text/javascript" src="rotating_lattice.js"></script>
 </body>

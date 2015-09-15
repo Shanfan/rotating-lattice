@@ -10,7 +10,13 @@ window.onload = function(){
     document.config.level.addEventListener('change', configure, false);
     
     document.config.level.addEventListener('input', function(){
-        document.querySelector('output').innerHTML = document.querySelector('input[type="range"]').value;
+        document.querySelector('output#for_level').innerHTML = document.querySelector('input#level').value;
+    }, false);
+
+    //TODO: document.config.speed.addEventListener('change', configure, false);
+
+    document.config.speed.addEventListener('input', function(){
+        document.querySelector('output#for_speed').innerHTML = document.querySelector('input#speed').value;
     }, false);
 
     var selected_palette = document.config.palette;
@@ -101,7 +107,7 @@ var swatches = {
         'rgb(178, 115, 172)',
         'rgb(206, 182, 198)',
         'rgb(226, 228, 215)',
-        //'rgb(245, 184, 105)', Not liking the yellowish color
+        //'rgb(245, 184, 105)', Not a fan of the yellowish color
         'rgb(222, 215, 207)',
         'rgb(196, 164, 188)',
         'rgb(173, 112, 171)',

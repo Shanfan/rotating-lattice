@@ -6,98 +6,160 @@ body {
 	padding: 0;
 	background-color: #222;
 	color: #636363;
-	font: 14px/1.2 "Open Sans" sans-serif;
+	font: 14px/1.2 "Open Sans", sans-serif;
 	overflow: hidden;
-}
-
-section {
-	margin: 0 0 2em 0;
-	padding: 0;
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  	display: -ms-flexbox;      /* TWEENER - IE 10 */
+  	display: -webkit-flex;     /* NEW - Chrome */
+  	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
 
 h2, h2 a {
 	color: #636363;
-	font-size: 1.143em;
+	font-size: 1em;
 	text-decoration: none;
 	text-transform: uppercase;
-	margin: 0 0 .3em 0;
+	margin: 0 0 .5em 0;
 	-webkit-transition: all 500ms;
-		transition: all 500ms;
+			transition: all 500ms;
 }
 
 h2 a:hover, h2 a:active {
 	color: #fff;
 	text-decoration: none;
 	-webkit-transition: all 500ms;
-		transition: all 500ms;
+			transition: all 500ms;
 }
 
 canvas {
 	width: 100%;
-	height: 100vh;
 	background-color: transparent;
 	padding: 0;
 	margin: 0;
 }
 
 .control{
-	position: absolute;
-	padding: 1.5em;
-	top: 0;
-	left: 0;
-	/*width: 2em;*/
+	margin: 0;
+	padding: 0;
+	min-width: 220px;
+	max-width: 220px;
 	height: 100vh;
 	background: #121212;
 	overflow: hidden;
 }
 
-	.control .config {
-
+	.control section {
+		margin: 0;
+		padding: 1.5em;
+		border-bottom: solid 1px #303030;
 	}
-		.config input[type=range]{
-		    -webkit-appearance: none;
+
+	ul.control-list {
+		list-style: none;
+		margin: 0;
+		padding-left: 2em;
+	}
+		ul.control-list > li:not(:last-child) {
+			margin: .5em 0;
 		}
 
-		.config input[type=range]::-webkit-slider-runnable-track {
-		    width: 300px;
-		    height: 5px;
-		    background: #ddd;
-		    border: none;
-		    border-radius: 3px;
-		}
+	.config output {
+		color: #fff;
+	}
 
-		.config input[type=range]::-webkit-slider-thumb {
-		    -webkit-appearance: none;
-		    border: none;
-		    height: 16px;
-		    width: 16px;
-		    border-radius: 50%;
-		    background: goldenrod;
-		    margin-top: -4px;
-		}
+/*-- Radio Input Style --*/
+	.config input[type=radio]{
+		display: none;
+	}
 
-		.config input[type=range]:focus {
-		    outline: none;
-		}
+	.config input[type=radio]:not(:checked) + label,
+	.config input[type=radio]:not(:checked) + label ul {
+		cursor: pointer;
+		color: #fff;
+		opacity: .25;
+	}
 
-		.config input[type=range]:focus::-webkit-slider-runnable-track {
-		    background: #ccc;
-		}
+	.config input[type=radio] + label:hover,
+	.config input[type=radio]:not(:checked) + label ul:hover {
+		opacity: .85;
+	}
+	.config input[type=radio]:checked + label {
+		color: #fff;
+		opacity: 1;
+	}
 
-		.config ul.swatches {
-			list-style: none;
-			padding: 0;
+	.config input[input=radio] + label,
+	.config input[type=radio] + label:hover,
+	.config input[type=radio] + label ul {	
+		-webkit-transition: all 500ms;
+				transition: all 500ms;
+	}
+
+/*-- Slider Range Input Style --*/
+	.config input[type=range]{
+	    -webkit-appearance: none;
+	    margin: 5px 0 0 0;
+	    width: 100%;
+	   	height: 12px;
+	   	/*border: 1px solid #636363;*/
+	}
+
+	.config input[type=range]::-webkit-slider-runnable-track {
+	    background: #121212;
+	    border: 1px solid #636363;
+	}
+
+	.config input[type=range]::-webkit-slider-thumb {
+	    -webkit-appearance: none;
+	    border: none;
+	    height: 10px;
+	    width: 16px;
+	    background: #636363;
+	}
+
+	.config input[type=range]:focus {
+	    outline: none;
+	}
+
+	.config input[type=range]:focus::-webkit-slider-runnable-track {
+	    border-color: #fff;
+	}
+	.config input[type=range]:focus::-webkit-slider-thumb {
+		background-color: #fff;
+	}
+
+	.config input[type=range],
+	.config input[type=range]::-webkit-slider-runnable-track,
+	.config input[type=range]::-webkit-slider-thumb,
+	.config input[type=range]:focus::-webkit-slider-runnable-track,
+	.config input[type=range]:focus::-webkit-slider-thumb{
+		-webkit-transition: all 500ms;
+				transition: all 500ms;
+	}
+
+
+
+/*-- Swatch Display Style --*/
+	ul.swatches {
+		list-style: none;
+		padding: 0;
+		margin: 3px 0 10px 0;
+		width: 100%;
+		display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	  	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	  	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	  	display: -webkit-flex;     /* NEW - Chrome */
+	  	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+	}
+		ul.swatches li {
+			height: 10px;
 			margin: 0;
-
+			-webkit-flex-grow: 1;
+			   -moz-flex-grow: 1;
+			   	  -ms-flexbox: 1;
+					flex-grow: 1;
 		}
-			.config ul.swatches li {
-				float: left;
-				height: 1em;
-				width: 1em;
-				background-color: #ff0000; /* TEST */
-				margin: 0;
-			}
-
 
 
 
