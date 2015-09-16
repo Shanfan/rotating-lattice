@@ -2,8 +2,9 @@
 paper.install(window);
 window.onload = function(){
 	paper.setup('lattice');
-	createTriangle(12, ["#ddd"]);
+	createTriangle(12, ["#fff"]);
 
+    //---- Event Listeners ----//
     document.config.geom[0].addEventListener('change', configure, false);
     document.config.geom[1].addEventListener('change', configure, false);
     
@@ -24,6 +25,7 @@ window.onload = function(){
         selected_palette[i].addEventListener('change', configure, false);
     }
 
+    //TODO: Write a function to output all the palette swatches //
     var swatch_list = document.querySelector('.swatches');
 };
 
@@ -72,7 +74,7 @@ function getPalette(){
 
 // --- Define the paletes --- //
 var swatches = {
-    monotone: ['#dcdfcf'],
+    monotone: ['#fff'],
     duo: ['#e8466c', '#fb8db4'],
     trio: ['#ecf8f4', '#dcdfcf', '#b3c0d2'],
     green_gradient: [
@@ -107,7 +109,7 @@ var swatches = {
         'rgb(178, 115, 172)',
         'rgb(206, 182, 198)',
         'rgb(226, 228, 215)',
-        //'rgb(245, 184, 105)', Not a fan of the yellowish color
+        'rgb(245, 184, 105)',
         'rgb(222, 215, 207)',
         'rgb(196, 164, 188)',
         'rgb(173, 112, 171)',
@@ -116,11 +118,6 @@ var swatches = {
         'rgb(27, 25, 46)'
     ],
     makeup_artist: [
-        'rgb(234, 136, 27)',
-        'rgb(230, 213, 64)',
-        'rgb(230, 177, 107)',
-        'rgb(199, 137, 107)',
-        'rgb(144, 103, 77)',
         'rgb(200, 70, 64)',
         'rgb(191, 56, 78)',
         'rgb(182, 56, 86)',
@@ -132,7 +129,12 @@ var swatches = {
         'rgb(241, 118, 209)',
         'rgb(110, 57, 103)',
         'rgb(58, 30, 53)',
-        'rgb(22, 20, 41)'
+        'rgb(22, 20, 41)',
+        // 'rgb(234, 136, 27)',
+        // 'rgb(230, 213, 64)',
+        // 'rgb(230, 177, 107)',
+        'rgb(199, 137, 107)',
+        'rgb(144, 103, 77)'
     ],
     earth: [
         'rgb(76, 43, 24)',

@@ -6,11 +6,13 @@
 	<script type="text/javascript" src="paper-full.min.js"></script>
 </head>
 <body>
+	<div class="content">
+		<canvas id="lattice" resize="true"></canvas>
+	</div>
 	<div class = "control">
-
 		<form name="config" class="config">
 			<section>
-				<h2><i class="fa fa-cogs fa-fw"></i>&nbsp;Lattice</h2	>
+				<h2><i class="fa fa-cogs fa-fw"></i>&nbsp;Lattice</h2>
 				<ul class="control-list">
 					<li>
 						<input type="radio" name="geom" id="triangle" value="triangle" checked />
@@ -40,51 +42,23 @@
 				<ul class="control-list">
 					<li>
 						<input type="radio" name="palette" id="monotone" value="monotone" checked /> 
-						<label for="monotone">Mono
-							<ul class="swatches monotone">
-							</ul>
-						</label>
-					</li>
-					<li>
-						<input type="radio" name="palette" id="duo" value="duo" />
-						<label for="duo">Duo
-							<ul class="swatches duo">
+						<label for="monotone">Zen
+							<ul class="swatches monotone">							
 							</ul>
 						</label>
 					</li>
 
 					<li>
 						<input type="radio" name="palette" id="trio" value="trio" />
-						<label for="trio">Trio
+						<label for="trio">Sky
 							<ul class="swatches trio">
 							</ul>
 						</label>
 					</li>
 					<li>
-						<input type="radio" name="palette" id="green_gradient" value="green_gradient" />
-						<label for="green_gradient">Green Gradient
-							<ul class="swatches green_gradient">
-							</ul>
-						</label>
-					</li>
-					<li>
 						<input type="radio" name="palette" id="spring_lilac" value="spring_lilac" />
-						<label for="spring_lilac">Spring Lilac
+						<label for="spring_lilac">Lilac
 							<ul class="swatches spring_lilac">
-							</ul>
-						</label>
-					</li>
-					<li>
-						<input type="radio" name="palette" id="birth_universe" value="birth_universe" />
-						<label for="birth_universe">Birth of the Universe
-							<ul class="swatches birth_universe">
-							</ul>
-						</label>
-					</li>
-					<li>
-						<input type="radio" name="palette" id="makeup_artist" value="makeup_artist" />
-						<label for="makeup_artist">Makeup Artist
-							<ul class="swatches makeup_artist">
 							</ul>
 						</label>
 					</li>
@@ -95,19 +69,46 @@
 							</ul>
 						</label>
 					</li>
+					<li>
+						<input type="radio" name="palette" id="duo" value="duo" />
+						<label for="duo">Blush
+							<ul class="swatches duo">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="green_gradient" value="green_gradient" />
+						<label for="green_gradient">Sprouts
+							<ul class="swatches green_gradient">
+							</ul>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="palette" id="makeup_artist" value="makeup_artist" />
+						<label for="makeup_artist">Lipstick Jungle
+							<ul class="swatches makeup_artist">
+							</ul>
+						</label>
+					</li>					
+					<li>
+						<input type="radio" name="palette" id="birth_universe" value="birth_universe" />
+						<label for="birth_universe">Birth of the Universe
+							<ul class="swatches birth_universe">
+							</ul>
+						</label>
+					</li>
 				</ul>
 			</section>
 			<section>
-				<h2><a href="#"><i class="fa fa-film fa-fw"></i>&nbsp;Behind the Scene</a></h2>
-				<h2><a href="https://github.com/Shanfan/rotating-lattice" target="_blank"><i class="fa fa-github-alt fa-fw"></i>&nbsp;Source Code</a></h2>
+				<h2 class="ex-link"><a href="#"><i class="fa fa-film fa-fw"></i>&nbsp;Behind the Scene</a></h2>
+				<h2 class="ex-link"><a href="https://github.com/Shanfan/rotating-lattice" target="_blank"><i class="fa fa-github-alt fa-fw"></i>&nbsp;Source Code</a></h2>
 			</section>
 			<section>
 				<p><i class="fa fa-chrome"></i> Everything works in Chrome. No guarantee for other browsers. <i class="fa fa-bug"></i></p>
 			</section>
 		</form>
-
 	</div>
-	<canvas id="lattice" resize="true"></canvas>
+
 	<script type="text/javascript" src="config.js"></script>
 	<script type="text/javascript" src="rotating_lattice.js"></script>
 </body>
