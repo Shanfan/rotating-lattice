@@ -93,11 +93,11 @@ function getPalette(){
 
 // --- Images --- //
 var imgs = [
-    'url(/img/IMG_1503.JPG)',
-    'url(/img/IMG_1504.JPG)',
-    'url(/img/IMG_1515.JPG)',
-    'url(/img/IMG_1601.JPG)',
-    'url(/img/IMG_1602.JPG)'
+    'url(img/IMG_1503.JPG)',
+    'url(img/IMG_1504.JPG)',
+    'url(img/IMG_1515.JPG)',
+    'url(img/IMG_1601.JPG)',
+    'url(img/IMG_1602.JPG)'
 ];
 
 // --- Define the paletes --- //
