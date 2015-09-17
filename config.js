@@ -4,6 +4,9 @@ window.onload = function(){
 	paper.setup('lattice');
 	createTriangle(12, ["#fff"]);
 
+    //---- Pick a random background image ----//
+    document.querySelector('.content').style.backgroundImage = imgs[Math.floor(Math.random()*imgs.length)];
+
     //---- Event Listeners ----//
     document.config.geom[0].addEventListener('change', configure, false);
     document.config.geom[1].addEventListener('change', configure, false);
@@ -25,11 +28,22 @@ window.onload = function(){
         selected_palette[i].addEventListener('change', configure, false);
     }
 
-    //TODO: Write a function to output all the palette swatches //
-    var swatch_list = document.querySelector('.swatches');
+    var swatch_list = document.getElementsByClassName('swatches');
+    for (var i = 0; i < swatch_list.length; i++) {
+        swatch_list[i].innerHTML = outputSwatches(swatch_list[i].outerHTML);
+    }
 };
 
+function outputSwatches(swa_str){
+    var list_item = '\n',
+        swatch_name = swa_str.slice(swa_str.indexOf('ches ') + 5, swa_str.indexOf('"></ul>'));
+        
+    swatches[swatch_name].forEach(function(co){
+        list_item = list_item + '<li style="background:' + co + ';"></li>' + '\n'
+    });
 
+    return list_item;
+}
 
 function configure(){
 	var shape = getShape(),
@@ -66,11 +80,25 @@ function getPalette(){
     for (var i=0; i<selected_palette.length; i++) {
         if (selected_palette[i].checked) {
             val = selected_palette[i].value;
+            if (val == 'monotone') {
+                document.querySelector('.content canvas').style.backgroundColor = "rgba(0,0,0, .1)";
+            }else{
+                document.querySelector('.content canvas').style.backgroundColor = "#212121";
+            }
             break;
         }
     }
     return swatches[val];
 }
+
+// --- Images --- //
+var imgs = [
+    'url(/img/IMG_1503.JPG)',
+    'url(/img/IMG_1504.JPG)',
+    'url(/img/IMG_1515.JPG)',
+    'url(/img/IMG_1601.JPG)',
+    'url(/img/IMG_1602.JPG)'
+];
 
 // --- Define the paletes --- //
 var swatches = {
@@ -130,11 +158,11 @@ var swatches = {
         'rgb(110, 57, 103)',
         'rgb(58, 30, 53)',
         'rgb(22, 20, 41)',
-        // 'rgb(234, 136, 27)',
-        // 'rgb(230, 213, 64)',
-        // 'rgb(230, 177, 107)',
+        'rgb(144, 103, 77)',
         'rgb(199, 137, 107)',
-        'rgb(144, 103, 77)'
+        'rgb(234, 136, 27)',
+        'rgb(230, 177, 107)',
+        'rgb(230, 213, 64)'
     ],
     earth: [
         'rgb(76, 43, 24)',
