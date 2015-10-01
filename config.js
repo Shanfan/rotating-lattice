@@ -1,8 +1,10 @@
 // --- Initiate Drawing --- //
 paper.install(window);
+
+
 window.onload = function(){
-	paper.setup('lattice');
-	createTriangle(12, ["#fff"]);
+    paper.setup('lattice');
+	createTriangle(12, ["#fff"], 1);
 
     //---- Pick a random background image ----//
     document.querySelector('.content').style.backgroundImage = imgs[Math.floor(Math.random()*imgs.length)];
@@ -17,7 +19,7 @@ window.onload = function(){
         document.querySelector('output#for_level').innerHTML = document.querySelector('input#level').value;
     }, false);
 
-    //TODO: document.config.speed.addEventListener('change', configure, false);
+    document.config.speed.addEventListener('change', configure, false);
 
     document.config.speed.addEventListener('input', function(){
         document.querySelector('output#for_speed').innerHTML = document.querySelector('input#speed').value;
@@ -32,6 +34,7 @@ window.onload = function(){
     for (var i = 0; i < swatch_list.length; i++) {
         swatch_list[i].innerHTML = outputSwatches(swatch_list[i].outerHTML);
     }
+
 };
 
 function outputSwatches(swa_str){
@@ -48,12 +51,13 @@ function outputSwatches(swa_str){
 function configure(){
 	var shape = getShape(),
 		level = getLevel(),
-		palette = getPalette();
+		palette = getPalette(),
+        speed = getSpeed();
 	
 	if (shape == "triangle") {
-		createTriangle(level, palette);
+		createTriangle(level, palette, speed);
 	}else {
-		createSquare(level, palette);
+		createSquare(level, palette, speed);
 	}
 }
 
@@ -72,6 +76,10 @@ function getShape(){
 
 function getLevel(){
     return document.getElementById('level').value;
+}
+
+function getSpeed(){
+    return document.getElementById('speed').value;
 }
 
 function getPalette(){

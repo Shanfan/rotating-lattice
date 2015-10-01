@@ -1,11 +1,10 @@
-function createTriangle(level, palette) {
+function createTriangle(level, palette, speed) {
     project.clear();
     // ---- Setup Variables ---- //
-    // TODO: to move these shared variables out of the scope, it has to make sure the paper.setup() is called.
     var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
         padding = base_measure/6,
+        group_center = new Point(view.center.x, view.center.y),   
         unit = (base_measure - 2 * padding) / level, 
-        group_center = new Point(view.center.x, view.center.y),
         radius = unit/2,
         frame_count = 0, 
         interval = 20,
@@ -16,7 +15,7 @@ function createTriangle(level, palette) {
     roundPath(path, radius/6);
 
     var center_shift = new Point(0, -radius/6), 
-        ratio = Math.sqrt(3) / 2;  //the height to side ratio of a reg trig
+        ratio = Math.sqrt(3) / 2;  //the height to side ratio of a regular triangle
         layers = Math.ceil(level / 3),
         layer_groups = [];
 
@@ -74,23 +73,21 @@ function createTriangle(level, palette) {
                 var triangle = layer_groups[k].children[i].children["triangle"],
                     anchor = layer_groups[k].children[i].children["anchor"];
                 
-                triangle.rotate(.5 * k, anchor.position);
-
-                //TODO: Add a mouse over action:
-                //Somehow allows the user to choose between static color
-                //or the beaming color
-                triangle.fillColor = palette[k % palette.length];
-                
-                // if (frame_count%interval===0){
-                //     triangle.fillColor = palette[(frame_count/interval + k) % palette.length];
-                // } 
+                triangle.rotate(k * speed, anchor.position);
+  
+                if (frame_count%interval===0){
+                    triangle.fillColor = palette[(frame_count/interval + k) % palette.length];
+                } 
             }
         }
         frame_count++;
     }
+
+    view.draw();
+
 } 
 
-function createSquare(level, palette) {
+function createSquare(level, palette, speed) {
     project.clear();
     // ---- Setup Variables ---- //
     var base_measure = view.size.width < view.size.height ? view.size.width : view.size.height;
@@ -99,7 +96,7 @@ function createSquare(level, palette) {
         group_center = new Point(view.center.x, view.center.y),
         radius = unit/2,
         frame_count = 0, 
-        interval = 2,
+        interval = 20,
         lattice = [];
 
     //--- Create base shape ---//
@@ -157,16 +154,16 @@ function createSquare(level, palette) {
         for (var k = 0; k < layers; k++){
             for (var i=0; i < layer_groups[k].children.length; i++){
                 var square = layer_groups[k].children[i];
-                square.rotate(.5 * k);
+                square.rotate(speed * k);
                 
                 if (frame_count%interval===0){
-                    square.fillColor = palette[(frame_count/interval + k) % palette.length];
+                    square.fillColor = palette[(frame_count / interval + k) % palette.length];
                 } 
             }
         }
         frame_count++;
     }
-
+    view.draw();
 }
 
 
