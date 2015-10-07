@@ -25,7 +25,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section id="control-sliders">
 				<h2><i class="fa fa-sliders fa-fw"></i>&nbsp;Control</h2>
 				<ul class="control-list">
 					<li>Level: <output id="for_level" for="level">12</output><br>
@@ -37,7 +37,7 @@
 				</ul>
 			</section>
 			
-			<section>
+			<section id="palette-selector">
 				<h2><i class="fa fa-magic fa-fw"></i>&nbsp;Palette</h2>
 				<ul class="control-list">
 					<li>
@@ -91,15 +91,29 @@
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section id = "links">
 				<h2 class="ex-link"><a href="#"><i class="fa fa-film fa-fw"></i>&nbsp;Behind the Scene</a></h2>
 				<h2 class="ex-link"><a href="https://github.com/Shanfan/rotating-lattice" target="_blank"><i class="fa fa-github-alt fa-fw"></i>&nbsp;Source Code</a></h2>
 			</section>
-			<section>
+			<section id = "disclaimer">
 				<p><i class="fa fa-chrome"></i> Everything works in Chrome. No guarantee for other browsers. <i class="fa fa-bug"></i></p>
 				<p>Made with <a href="http://paperjs.org/" target="_blank">Paper.js</a>.</p>
 			</section>
 		</form>
+
+		<div id = "config-mobile">
+			<div>
+				<input type="radio" name="geom" id="triangle" value="triangle" checked />
+				<label for="triangle"><i class="fa fa-fw fa-play fa-rotate-90"></i></label>
+			</div>
+			<div>
+				<input type="radio" id="rectangle" name="geom" value="rectangle" />
+				<label for="rectangle"><i class="fa fa-fw fa-stop"></i></label>
+			</div>
+			<div>
+				<a href="#"><i class="fa fa-film fa-fw"></i></a>
+			</div>
+		</div>
 	</div>
 
 	<script type="text/javascript" src="config.js"></script>

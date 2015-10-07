@@ -42,7 +42,7 @@ body {
 		padding: 1.5em;
 	}
 
-	h2, h2 a {
+	h2, a {
 		color: #999;
 		font-size: 1em;
 		text-decoration: none;
@@ -52,7 +52,7 @@ body {
 				transition: all 500ms;
 	}
 
-	h2 a:hover, h2 a:active {
+	a:hover, a:active {
 		color: #fff;
 		text-decoration: none;
 		-webkit-transition: all 500ms;
@@ -80,43 +80,43 @@ body {
 			margin: .5em 0;
 		}
 
-	.config output {
+	output {
 		color: #fff;
 	}
 
 /*-- Radio Input Style --*/
-	.config input[type=radio]{
+	input[type=radio]{
 		display: none;
 	}
 
-	.config input[type=radio] + label {
+	input[type=radio] + label {
 		display: block;
 	}
 
-	.config input[type=radio]:not(:checked) + label,
-	.config input[type=radio]:not(:checked) + label ul {
+	input[type=radio]:not(:checked) + label,
+	input[type=radio]:not(:checked) + label ul {
 		cursor: pointer;
 		color: #fff;
 		opacity: .35;
 	}
 
-	.config input[type=radio]:not(:checked) + label:hover {
+	input[type=radio]:not(:checked) + label:hover {
 		opacity: .9;
 	}
-	.config input[type=radio]:checked + label {
+	input[type=radio]:checked + label {
 		color: #fff;
 		opacity: 1;
 	}
 
-	.config input[input=radio] + label,
-	.config input[type=radio] + label:hover,
-	.config input[type=radio] + label ul {	
+	input[input=radio] + label,
+	input[type=radio] + label:hover,
+	input[type=radio] + label ul {	
 		-webkit-transition: all 500ms;
 				transition: all 500ms;
 	}
 
 /*-- Slider Range Input Style --*/
-	.config input[type=range]{
+	input[type=range]{
 	    -webkit-appearance: none;
 	    margin: 5px 0 0 0;
 	    width: 100%;
@@ -124,12 +124,12 @@ body {
 	   	background: transparent;
 	}
 
-	.config input[type=range]::-webkit-slider-runnable-track {
+	input[type=range]::-webkit-slider-runnable-track {
 	    background: rgba(0, 0, 0, .5);
 	    border: 1px solid #636363;
 	}
 
-	.config input[type=range]::-webkit-slider-thumb {
+	input[type=range]::-webkit-slider-thumb {
 	    -webkit-appearance: none;
 	    border: none;
 	    height: 10px;
@@ -137,22 +137,22 @@ body {
 	    background: #636363;
 	}
 
-	.config input[type=range]:focus {
+	input[type=range]:focus {
 	    outline: none;
 	}
 
-	.config input[type=range]:focus::-webkit-slider-runnable-track {
+	input[type=range]:focus::-webkit-slider-runnable-track {
 	    border-color: #fff;
 	}
-	.config input[type=range]:focus::-webkit-slider-thumb {
+	input[type=range]:focus::-webkit-slider-thumb {
 		background-color: #fff;
 	}
 
-	.config input[type=range],
-	.config input[type=range]::-webkit-slider-runnable-track,
-	.config input[type=range]::-webkit-slider-thumb,
-	.config input[type=range]:focus::-webkit-slider-runnable-track,
-	.config input[type=range]:focus::-webkit-slider-thumb{
+	input[type=range],
+	input[type=range]::-webkit-slider-runnable-track,
+	input[type=range]::-webkit-slider-thumb,
+	input[type=range]:focus::-webkit-slider-runnable-track,
+	input[type=range]:focus::-webkit-slider-thumb{
 		-webkit-transition: all 500ms;
 				transition: all 500ms;
 	}
@@ -180,5 +180,48 @@ body {
 					flex-grow: 1;
 		}
 
+/*-- Media Queries --*/
+@media only screen 
+  /*and (min-device-width: 414px) */
+  and (max-width: 736px) 
+  /*and (-webkit-min-device-pixel-ratio: 3)
+  and (-webkit-min-device-pixel-ratio: 2)*/ { 
 
+	.control {
+		width: 100%;
+		height: 4em;
+		top: inherit;
+		bottom: 0;
+	}
+	.config {
+		display: none;
+	}
+	.content {
+		padding-left: 0px;
+	}
+	#config-mobile {
+		display: -webkit-box;
+	  	display: -moz-box;
+	  	display: -ms-flexbox;
+	  	display: -webkit-flex; 
+	  	display: flex;
+	  	font-size: 2em;
+	}
+	#config-mobile div {
+		-webkit-flex-grow: 1;
+		   -moz-flex-grow: 1;
+		   	  -ms-flexbox: 1;
+				flex-grow: 1;
+		text-align: center;
+		padding-top: .35em;
+	}
+
+}
+
+@media only screen
+	and (min-width: 736px) {
+		#config-mobile {
+			display: none;
+		}
+	}
 
