@@ -37,23 +37,47 @@ window.onload = function(){
 
     //---- Mobile UI ----//
     var submit_btn = document.querySelector('#config-mobile .submit-btn'),
-        config_btn = document.querySelector('#config-mobile .config-btn');
+        config_btn = document.querySelector('#config-mobile .config-btn'),
+        config_controls = document.querySelector('.config'),
+        canvas = document.querySelector('#lattice');
+
 
     submit_btn.addEventListener('click', function(){
         this.classList.toggle('hidden');
         config_btn.classList.toggle('hidden');
-        document.querySelector('.config').classList.toggle('hidden');
-        document.querySelector('#lattice').classList.toggle('hidden');
+
+        crossFade(canvas, config_controls);
+        
+        config_controls.addEventListener('webkitAnimationEnd', hideControl);
+        config_controls.addEventListener('animationend', hideControl);
     });
 
     config_btn.addEventListener('click', function(){
         this.classList.toggle('hidden');
         submit_btn.classList.toggle('hidden');
-        document.querySelector('.config').classList.toggle('hidden');
-        document.querySelector('#lattice').classList.toggle('hidden');
+        
+        config_controls.removeEventListener('webkitAnimationEnd', hideControl);
+        config_controls.removeEventListener('animationend', hideControl);
+        config_controls.classList.remove('hidden');
+        
+        crossFade(config_controls, canvas);
     })
 
+
+    function hideControl(){
+        config_controls.classList.add('hidden');
+    }
+
+    function crossFade(obj_in, obj_out){
+        obj_in.style.animation = 'fadeIn 1s forwards';
+        obj_in.style.WebkitAnimation = 'fadeIn 1s forwards';
+
+        obj_out.style.animation = 'fadeOut 1s forwards';
+        obj_out.style.WebkitAnimation = 'fadeOut 1s forwards';
+    }
+
 };
+
 
 function outputSwatches(swa_str){
     var list_item = '\n',

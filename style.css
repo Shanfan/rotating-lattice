@@ -185,6 +185,27 @@ body {
 					flex-grow: 1;
 		}
 
+/*---- Animations ----*/
+@-webkit-keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@-webkit-keyframes fadeOut {
+	from {opacity: 1;}
+	to {opacity: 0;}
+}
+
+@keyframes fadeOut {
+	from {opacity: 1;}
+	to {opacity: 0;}
+}
+
 /*-- Media Queries --*/
 @media screen
   and (max-width: 736px) 
@@ -246,17 +267,13 @@ body {
 		bottom: 1.2em;
 		right: 1.2em;
 		border-radius: 50%;
-		font-size: 1.5em;
+		font-size: 1.2em;
 		padding: .5em;
 		border: none;
 		box-shadow: 0 4px 5px rgba(0, 0, 0, .5);
-		-webkit-transition: all 50ms ease-out;
-			transition: all 50ms ease-out;
 	}
 	#config-mobile button:hover {
 		cursor: pointer;
-		-webkit-transition: all 50ms ease-out;
-			transition: all 50ms ease-out;
 	}
 
 	.submit-btn {
