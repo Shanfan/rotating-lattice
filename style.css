@@ -208,8 +208,9 @@ body {
 
 /*-- Media Queries --*/
 @media screen
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
+  and (max-width: 736px)
+  /*and (max-device-width: 736px)*/ 
+  /*and (-webkit-min-device-pixel-ratio: 2)*/ { 
   	body {
   		font-size: 18px;
   	}

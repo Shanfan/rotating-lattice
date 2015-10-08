@@ -47,7 +47,7 @@ window.onload = function(){
         config_btn.classList.toggle('hidden');
 
         crossFade(canvas, config_controls);
-        
+
         config_controls.addEventListener('webkitAnimationEnd', hideControl);
         config_controls.addEventListener('animationend', hideControl);
     });
@@ -69,11 +69,11 @@ window.onload = function(){
     }
 
     function crossFade(obj_in, obj_out){
-        obj_in.style.animation = 'fadeIn 1s forwards';
-        obj_in.style.WebkitAnimation = 'fadeIn 1s forwards';
+        obj_in.style.animation = 'fadeIn .3s forwards';
+        obj_in.style.WebkitAnimation = 'fadeIn .3s forwards';
 
-        obj_out.style.animation = 'fadeOut 1s forwards';
-        obj_out.style.WebkitAnimation = 'fadeOut 1s forwards';
+        obj_out.style.animation = 'fadeOut .3s forwards';
+        obj_out.style.WebkitAnimation = 'fadeOut .3s forwards';
     }
 
 };
