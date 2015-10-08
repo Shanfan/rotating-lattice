@@ -44,7 +44,7 @@ body {
 
 	.control section {
 		margin: 0;
-		padding: 1.5em;
+		padding: 1em;
 	}
 
 	h2, a {
@@ -82,7 +82,7 @@ body {
 		padding-left: 1.5em;
 	}
 		ul.control-list > li:not(:last-child) {
-			margin: .5em 0;
+			margin: .75em 0;
 		}
 
 	output {
