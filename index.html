@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Rotating Lattice</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="paper-full.min.js"></script>
@@ -10,7 +12,11 @@
 		<canvas id="lattice" resize="true"></canvas>
 	</div>
 	<div class = "control">
-		<form name="config" class="config">
+		<div id="config-mobile">
+			<button type="submit" class="submit-btn hidden"><i class="fa fa-check fa-fw"></i></button>
+			<button type="button" class="config-btn"><i class="fa fa-cogs fa-fw"></i></button>
+		</div>
+		<form name="config" class="config hidden">
 			<section>
 				<h2><i class="fa fa-cogs fa-fw"></i>&nbsp;Lattice</h2>
 				<ul class="control-list">
@@ -100,21 +106,6 @@
 				<p>Made with <a href="http://paperjs.org/" target="_blank">Paper.js</a>.</p>
 			</section>
 		</form>
-
-		<div id = "config-mobile">
-			<div>
-				<input type="radio" name="geom" id="triangle" value="triangle" checked />
-				<label for="triangle"><i class="fa fa-fw fa-play fa-rotate-90"></i></label>
-			</div>
-			<div>
-				<input type="radio" id="rectangle" name="geom" value="rectangle" />
-				<label for="rectangle"><i class="fa fa-fw fa-stop"></i></label>
-			</div>
-			<div>
-				<a href="#"><i class="fa fa-film fa-fw"></i></a>
-			</div>
-		</div>
-	</div>
 
 	<script type="text/javascript" src="config.js"></script>
 	<script type="text/javascript" src="rotating_lattice.js"></script>

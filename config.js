@@ -35,6 +35,24 @@ window.onload = function(){
         swatch_list[i].innerHTML = outputSwatches(swatch_list[i].outerHTML);
     }
 
+    //---- Mobile UI ----//
+    var submit_btn = document.querySelector('#config-mobile .submit-btn'),
+        config_btn = document.querySelector('#config-mobile .config-btn');
+
+    submit_btn.addEventListener('click', function(){
+        this.classList.toggle('hidden');
+        config_btn.classList.toggle('hidden');
+        document.querySelector('.config').classList.toggle('hidden');
+        document.querySelector('#lattice').classList.toggle('hidden');
+    });
+
+    config_btn.addEventListener('click', function(){
+        this.classList.toggle('hidden');
+        submit_btn.classList.toggle('hidden');
+        document.querySelector('.config').classList.toggle('hidden');
+        document.querySelector('#lattice').classList.toggle('hidden');
+    })
+
 };
 
 function outputSwatches(swa_str){
